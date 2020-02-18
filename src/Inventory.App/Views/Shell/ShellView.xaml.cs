@@ -21,6 +21,7 @@ using Windows.ApplicationModel.Core;
 
 using Inventory.ViewModels;
 using Inventory.Services;
+using Windows.UI.Xaml;
 
 namespace Inventory.Views
 {
@@ -61,7 +62,6 @@ namespace Inventory.Views
             ViewModel.Unsubscribe();
             ViewModel = null;
             Bindings.StopTracking();
-            frame.Navigate(typeof(Page));
             var appView = ApplicationView.GetForCurrentView();
             appView.Consolidated -= OnViewConsolidated;
             ServiceLocator.DisposeCurrent();

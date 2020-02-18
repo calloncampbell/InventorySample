@@ -1,5 +1,5 @@
 # Architecture Overview
-**VanArsdel Inventory Sample** is based on a VMMV architecture pattern to facilitate the separation of the user interface from the business logic of the application. You can read more details about the MVVM pattern in the MVVM section of this documentation.
+**VanArsdel Inventory Sample** is based on a MVVM architecture pattern to facilitate the separation of the user interface from the business logic of the application. You can read more details about the MVVM pattern in the MVVM section of this documentation.
 
 The following diagram shows the different layers in the application.
 
@@ -50,12 +50,11 @@ For example, the CustomersView consists on the following subviews:
 -	**CustomersDetails** – contains the details of a selected customer with input controls to enable the edition of the selected customer in the list. It also contains the common actions available for a customer, such as: Edit or delete.
 -	**CustomersCard** – shows the main properties of the selected customer as a quick and read only view.
 -	**CustomersOrders** – contains the list of orders associated to the selected customer.
--	**CustomersView** – is the top-level view containing all the subviews described before. 
+-	**CustomersView** – is the top-level view containing all the subviews described before.
 
 The following image shows the diferent subviews contained in the CustomersView.
 
 ![Views and Subviews](img/ovw-views-subviews.png)
-
 
 ## Shell views
 A Shell view is a special type of view. This view is the shell of a window and serves as a container for other views.
@@ -78,7 +77,7 @@ The following image identifies the different elements in the MainShell view.
 # ViewModels
 View-models are another essential part in the MVVM architecture pattern. You can read more details about the concepts of the View-model in the MVVM – View Model section of this documentation.
 
-The view-model contains the UI logic of the application, so it is reasonable to believe that there will be, at least, on view-model for each View. In some cases, where the view requires more complexity, more than one view-model are used for a single view.
+The view-model contains the UI logic of the application, so it is reasonable to believe that there will be, at least, one view-model for each View. In some cases, where the view requires more complexity, more than one view-model are used for a single view.
 
 To see how view-models are related to views, let’s see an example with the Customers view. The Customers view is associated with a Customers view-model and this view-model references two other view-models: CustomersList view-model and CustomersDetails view-model.
 
@@ -232,10 +231,10 @@ The ServiceLocator uses a ServiceCollection class where services are registered 
 
 To register a service in the ServiceCollection we can use the following code:
 ```csharp
-    serviceCollection.AddSingletone<ILogService, LogService>();
+    serviceCollection.AddSingleton<ILogService, LogService>();
 ```
 
-In this case, we are registering the ILogService interface to use the LogService implementation as a singletone. This means that the next time we request a ILogService, the ServiceLocator will return an instance of the LogService class and will reuse the same instance for all the future requests.
+In this case, we are registering the ILogService interface to use the LogService implementation as a singletonok. This means that the next time we request a ILogService, the ServiceLocator will return an instance of the LogService class and will reuse the same instance for all the future requests.
 
 If we want the ServiceLocator to return a new instance for every request, we can register the ILogService as transient:
 ```csharp
@@ -290,4 +289,4 @@ View-models make use of services to execute the operation requested by the user.
 
 View-models and services are instantiated using a ServiceLocator following the Dependency Injection pattern.
 -	We request a service to the ServiceLocator by specifying an interface.
--	ServiceLocator can be configured to instantiate services as Singletone, Transient or Scoped.
+-	ServiceLocator can be configured to instantiate services as Singleton, Transient or Scoped.
